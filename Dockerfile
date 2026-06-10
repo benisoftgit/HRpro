@@ -49,8 +49,9 @@ EXPOSE 8000
 HEALTHCHECK --interval=30s --timeout=5s --start-period=10s --retries=3 \
     CMD python -c "import socket; s=socket.socket(); s.connect(('localhost',${PORT:-8000})); s.close()"
 
-CMD gunicorn hrpro_backend.wsgi:application \
-    --bind 0.0.0.0:$PORT \
-    --workers $WEB_CONCURRENCY \
-    --timeout 120 \
-    --access-logfile -
+#CMD gunicorn hrpro_backend.wsgi:application \
+ #   --bind 0.0.0.0:$PORT \
+#  --workers $WEB_CONCURRENCY \
+#    --timeout 120 \
+#    --access-logfile -
+CMD ["gunicorn", "backend.wsgi:application", "--bind", "0.0.0.0:8000"]
