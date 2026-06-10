@@ -1,0 +1,37 @@
+# render.yaml — Render.com Blueprint
+# Deploy via Render Dashboard → Blueprint (connect repo)
+
+services:
+  - type: web
+    name: hrpro
+    runtime: image
+    repo: https://github.com/yourusername/hrpro
+    plan: free
+    dockerfilePath: ./Dockerfile
+    envVars:
+      - key: DEBUG
+        value: "False"
+      - key: ALLOWED_HOSTS
+        value: ".onrender.com,localhost"
+      - key: CORS_ALLOW_ALL_ORIGINS
+        value: "False"
+      - key: FRONTEND_URL
+        value: https://hrpro.onrender.com
+      - key: FRONTEND_DIST_DIR
+        value: /app/frontend/dist
+      - key: SECRET_KEY
+        sync: false
+      - key: DB_NAME
+        sync: false
+      - key: DB_USER
+        sync: false
+      - key: DB_PASSWORD
+        sync: false
+      - key: DB_HOST
+        sync: false
+      - key: DB_PORT
+        value: "5432"
+      - key: EMAIL_HOST_USER
+        sync: false
+      - key: EMAIL_HOST_PASSWORD
+        sync: false

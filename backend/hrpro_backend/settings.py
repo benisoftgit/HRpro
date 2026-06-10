@@ -4,6 +4,7 @@ Django settings for HR Pro — Ghana Employee Management System.
 
 from pathlib import Path
 from datetime import timedelta
+from urllib.parse import urlparse, unquote
 from decouple import config
 
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -81,16 +82,50 @@ WSGI_APPLICATION = "hrpro_backend.wsgi.application"
 ASGI_APPLICATION = "hrpro_backend.asgi.application"
 
 # Database
-DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.postgresql",
-        "NAME": config("DB_NAME", default="hrpro_db"),
-        "USER": config("DB_USER", default="postgres"),
-        "PASSWORD": config("DB_PASSWORD", default=""),
-        "HOST": config("DB_HOST", default="localhost"),
-        "PORT": config("DB_PORT", default="5432"),
+_DATABASE_URL = config("DATABASE_URL", default="")
+if _DATABASE_URL:
+    _parsed = urlparse(_DATABASE_URL)
+    _db_opts = {}
+    if _parsed.query:
+        for qs in _parsed.query.split("&"):
+            if "=" in qs:
+                k, v = qs.split("=", 1)
+                if k == "sslmode":
+                    _db_opts["sslmode"] = v
+    _db_host = _parsed.hostname or config("DB_HOST", default="localhost")
+    # Auto-detect Neon: require SSL for neon.tech hosts
+    if not _db_opts.get("sslmode") and "neon.tech" in _db_host:
+        _db_opts["sslmode"] = "require"
+    DATABASES = {
+        "default": {
+            "ENGINE": "django.db.backends.postgresql",
+            "NAME": unquote(_parsed.path[1:]) if _parsed.path else config("DB_NAME", default="hrpro_db"),
+            "USER": unquote(_parsed.username) if _parsed.username else config("DB_USER", default="postgres"),
+            "PASSWORD": unquote(_parsed.password) if _parsed.password else config("DB_PASSWORD", default=""),
+            "HOST": _db_host,
+            "PORT": str(_parsed.port or config("DB_PORT", default="5432")),
+            "OPTIONS": _db_opts,
+        }
     }
-}
+else:
+    _db_opts = {}
+    _db_sslmode = config("DB_SSLMODE", default="")
+    if _db_sslmode:
+        _db_opts["sslmode"] = _db_sslmode
+    _db_host = config("DB_HOST", default="localhost")
+    if not _db_opts.get("sslmode") and "neon.tech" in _db_host:
+        _db_opts["sslmode"] = "require"
+    DATABASES = {
+        "default": {
+            "ENGINE": "django.db.backends.postgresql",
+            "NAME": config("DB_NAME", default="hrpro_db"),
+            "USER": config("DB_USER", default="postgres"),
+            "PASSWORD": config("DB_PASSWORD", default=""),
+            "HOST": _db_host,
+            "PORT": config("DB_PORT", default="5432"),
+            "OPTIONS": _db_opts,
+        }
+    }
 
 # Custom user model
 AUTH_USER_MODEL = "accounts.User"
@@ -113,6 +148,10 @@ USE_TZ = True
 STATIC_URL = "/static/"
 STATIC_ROOT = BASE_DIR / "staticfiles"
 STATICFILES_DIRS = [BASE_DIR / "static"]
+# Frontend build directory (for single-service deployment)
+_FRONTEND_DIST = config("FRONTEND_DIST_DIR", default=str(BASE_DIR.parent / "frontend" / "dist"))
+if _FRONTEND_DIST:
+    STATICFILES_DIRS.insert(0, _FRONTEND_DIST)
 STORAGES = {
     "staticfiles": {
         "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",

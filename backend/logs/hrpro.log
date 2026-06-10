@@ -3169,3 +3169,20 @@ C:\Users\benic\Documents\NetBeansProjects\HTML\hrpro\backend\hrpro_backend\setti
 Watching for file changes with StatReloader
 C:\Users\benic\Documents\NetBeansProjects\HTML\hrpro\backend\hrpro_backend\settings.py changed, reloading.
 Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+Method Not Allowed: /api/auth/login/
+"GET /api/auth/login/ HTTP/1.1" 405 40
+- Broken pipe from ('127.0.0.1', 50540)
+C:\Users\benic\Documents\NetBeansProjects\HTML\hrpro\backend\hrpro_backend\settings.py changed, reloading.
+C:\Users\benic\Documents\NetBeansProjects\HTML\hrpro\backend\hrpro_backend\settings.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+C:\Users\benic\Documents\NetBeansProjects\HTML\hrpro\backend\hrpro_backend\settings.py changed, reloading.
+C:\Users\benic\Documents\NetBeansProjects\HTML\hrpro\backend\hrpro_backend\settings.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader

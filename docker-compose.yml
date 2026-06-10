@@ -16,24 +16,29 @@ services:
       timeout: 5s
       retries: 5
 
-  backend:
+  app:
     build:
       context: .
-      target: backend
+      dockerfile: Dockerfile
+      args:
+        VITE_API_URL: ${VITE_API_URL:-/api}
     restart: unless-stopped
+    ports:
+      - "80:8000"
     depends_on:
       db:
         condition: service_healthy
     environment:
       DEBUG: "False"
       SECRET_KEY: ${SECRET_KEY}
+      DATABASE_URL: ${DATABASE_URL:-}
       DB_NAME: ${DB_NAME:-hrpro_db}
       DB_USER: ${DB_USER:-postgres}
       DB_PASSWORD: ${DB_PASSWORD:-hrpro_secret}
       DB_HOST: db
       DB_PORT: "5432"
       FRONTEND_URL: ${FRONTEND_URL:-http://localhost}
-      ALLOWED_HOSTS: ${ALLOWED_HOSTS:-localhost,backend}
+      ALLOWED_HOSTS: ${ALLOWED_HOSTS:-localhost,app}
       CORS_ALLOW_ALL_ORIGINS: "False"
       EMAIL_HOST: ${EMAIL_HOST:-smtp.gmail.com}
       EMAIL_PORT: ${EMAIL_PORT:-587}
@@ -41,23 +46,8 @@ services:
       EMAIL_HOST_PASSWORD: ${EMAIL_HOST_PASSWORD:-}
       EMAIL_USE_TLS: "True"
     volumes:
-      - backend_media:/app/backend/media
-    expose:
-      - "8000"
-
-  web:
-    image: nginx:alpine
-    restart: unless-stopped
-    depends_on:
-      - backend
-    ports:
-      - "80:80"
-    volumes:
-      - ./nginx.conf:/etc/nginx/conf.d/default.conf:ro
-      - backend_media:/var/www/media:ro
-    extra_hosts:
-      - "host.docker.internal:host-gateway"
+      - app_media:/app/media
 
 volumes:
   postgres_data:
-  backend_media:
+  app_media:
