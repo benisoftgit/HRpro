@@ -17,20 +17,10 @@ services:
         value: "False"
       - key: FRONTEND_URL
         value: https://hrpro.onrender.com
-      - key: FRONTEND_DIST_DIR
-        value: /app/frontend/dist
       - key: SECRET_KEY
         sync: false
-      - key: DB_NAME
+      - key: DATABASE_URL
         sync: false
-      - key: DB_USER
-        sync: false
-      - key: DB_PASSWORD
-        sync: false
-      - key: DB_HOST
-        sync: false
-      - key: DB_PORT
-        value: "5432"
       - key: EMAIL_HOST_USER
         sync: false
       - key: EMAIL_HOST_PASSWORD
