@@ -9,6 +9,9 @@ from decouple import config
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+# Ensure log directory exists
+(BASE_DIR / "logs").mkdir(parents=True, exist_ok=True)
+
 SECRET_KEY = config("SECRET_KEY", default="django-insecure-change-me-in-production")
 
 DEBUG = config("DEBUG", default=True, cast=bool)

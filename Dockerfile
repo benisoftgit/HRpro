@@ -12,7 +12,7 @@ RUN pip install --no-cache-dir -r requirements.txt
 COPY backend/ .
 
 ENV FRONTEND_DIST_DIR=
-RUN python manage.py collectstatic --noinput
+RUN mkdir -p logs && python manage.py collectstatic --noinput
 
 # ── Stage 2: Frontend build ─────────────────────────────────
 FROM node:20-alpine AS frontend
@@ -35,6 +35,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     && rm -rf /var/lib/apt/lists/*
 
 WORKDIR /app
+COPY --from=backend /usr/local /usr/local
 COPY --from=backend /app /app
 COPY --from=frontend /app/dist /app/frontend/dist
 
@@ -49,9 +50,8 @@ EXPOSE 8000
 HEALTHCHECK --interval=30s --timeout=5s --start-period=10s --retries=3 \
     CMD python -c "import socket; s=socket.socket(); s.connect(('localhost',${PORT:-8000})); s.close()"
 
-#CMD gunicorn hrpro_backend.wsgi:application \
- #   --bind 0.0.0.0:$PORT \
-#  --workers $WEB_CONCURRENCY \
-#    --timeout 120 \
-#    --access-logfile -
-CMD ["gunicorn", "backend.wsgi:application", "--bind", "0.0.0.0:8000"]
+CMD gunicorn hrpro_backend.wsgi:application \
+    --bind 0.0.0.0:$PORT \
+    --workers $WEB_CONCURRENCY \
+    --timeout 120 \
+    --access-logfile -
