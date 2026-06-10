@@ -13,11 +13,7 @@ WORKDIR /app/backend
 COPY backend/requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 COPY backend/ .
-
 RUN python manage.py collectstatic --noinput
-
-EXPOSE 8000
-CMD ["gunicorn", "hrpro_backend.wsgi:application", "--bind", "0.0.0.0:8000", "--workers", "4", "--timeout", "120"]
 
 # ── Frontend build ─────────────────────────────────────────────
 FROM node:20-alpine AS frontend
@@ -32,15 +28,26 @@ COPY frontend/ .
 RUN npm run build
 
 # ── Production image ───────────────────────────────────────────
-FROM nginx:alpine
+FROM python:3.11-slim AS runtime
 
-RUN apk add --no-cache bash
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    nginx \
+    && rm -rf /var/lib/apt/lists/*
 
+RUN mkdir -p /var/www/static /var/www/media /var/www/html
+
+WORKDIR /app
+COPY --from=backend /app/backend /app/backend
 COPY --from=backend /app/backend/staticfiles /var/www/static
 COPY --from=backend /app/backend/media /var/www/media
 COPY --from=frontend /app/frontend/dist /var/www/html
-
 COPY nginx.conf /etc/nginx/conf.d/default.conf
 
+ENV PYTHONUNBUFFERED=1
+ENV DJANGO_SETTINGS_MODULE=hrpro_backend.settings
+
 EXPOSE 80
-CMD ["nginx", "-g", "daemon off;"]
+EXPOSE 8080
+
+WORKDIR /app/backend
+CMD ["sh", "-lc", "gunicorn hrpro_backend.wsgi:application --bind 0.0.0.0:8080 --workers 4 --timeout 120 & nginx -g 'daemon off;'" ]
