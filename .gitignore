@@ -1,0 +1,50 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.whl
+venv/
+env/
+.venv/
+backend/venv/
+backend/env/
+*.egg-info/
+dist/
+build/
+*.egg
+.Python
+
+# Django
+staticfiles/
+media/
+*.log
+local_settings.py
+
+# Node
+node_modules/
+frontend/node_modules/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Environment
+.env
+.env.local
+.env.production
+
+# Build
+frontend/dist/
+backend/staticfiles/
+
+# Migration backups
+*.sqlite3
