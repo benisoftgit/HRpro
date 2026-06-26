@@ -1,6 +1,10 @@
 from pathlib import Path
 from django.conf import settings
-from django.http import FileResponse, Http404
+from django.http import FileResponse, Http404, JsonResponse
+
+
+def health_check(request):
+    return JsonResponse({"status": "ok"})
 
 
 def frontend_spa(request):

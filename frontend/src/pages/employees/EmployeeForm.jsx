@@ -46,16 +46,11 @@ export default function EmployeeForm() {
       api.get(DEPARTMENTS.LIST + "?page_size=100").then((r) => r.data),
   });
 
-  const selectedDept = watch("department");
-
-  // Load positions for selected department
+  // Load all active positions
   const { data: positions } = useQuery({
-    queryKey: ["positions", selectedDept],
+    queryKey: ["positions"],
     queryFn: () =>
-      api
-        .get(`${DEPARTMENTS.POSITIONS}?department=${selectedDept}&page_size=100`)
-        .then((r) => r.data),
-    enabled: !!selectedDept,
+      api.get(DEPARTMENTS.POSITIONS + "?page_size=200").then((r) => r.data),
   });
 
   // Populate form when editing

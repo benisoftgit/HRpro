@@ -30,7 +30,6 @@ export default function Departments() {
   // ── Position state ────────────────────────────────────────────────────────
   const [posModal, setPosModal] = useState(false);
   const [editingPos, setEditingPos] = useState(null);
-  const [deptFilter, setDeptFilter] = useState("");
 
   const posForm = useForm();
 
@@ -41,12 +40,9 @@ export default function Departments() {
   });
 
   const { data: positions, isLoading: loadingPos } = useQuery({
-    queryKey: ["positions", deptFilter],
-    queryFn: () => {
-      const params = new URLSearchParams({ page_size: 200 });
-      if (deptFilter) params.set("department", deptFilter);
-      return api.get(`${DEPARTMENTS.POSITIONS}?${params}`).then((r) => r.data);
-    },
+    queryKey: ["positions"],
+    queryFn: () =>
+      api.get(DEPARTMENTS.POSITIONS + "?page_size=200").then((r) => r.data),
   });
 
   // ── Department mutations ──────────────────────────────────────────────────
@@ -124,12 +120,13 @@ export default function Departments() {
       pos
         ? {
             title: pos.title,
-            department: pos.department,
             grade: pos.grade,
             basic_salary: pos.basic_salary ?? "",
+            regular_ot_rate: pos.regular_ot_rate ?? "",
+            holiday_ot_rate: pos.holiday_ot_rate ?? "",
             description: pos.description,
           }
-        : { title: "", department: "", grade: "", basic_salary: "", description: "" }
+        : { title: "", grade: "", basic_salary: "", regular_ot_rate: "", holiday_ot_rate: "", description: "" }
     );
     setPosModal(true);
   };
@@ -210,16 +207,6 @@ export default function Departments() {
       key: "title",
       label: "Position Title",
       render: (v) => <span className="font-medium text-slate-900">{v}</span>,
-    },
-    {
-      key: "department_name",
-      label: "Department",
-      render: (v) => (
-        <span className="inline-flex items-center gap-1 text-sm text-slate-600">
-          <BuildingOfficeIcon className="h-3.5 w-3.5" />
-          {v}
-        </span>
-      ),
     },
     {
       key: "grade",
@@ -360,19 +347,6 @@ export default function Departments() {
       {/* Positions tab */}
       {tab === "positions" && (
         <div className="space-y-4">
-          {/* Filter by department */}
-          <div className="card !p-4">
-            <select
-              value={deptFilter}
-              onChange={(e) => setDeptFilter(e.target.value)}
-              className="form-input w-full sm:w-64"
-            >
-              <option value="">All Departments</option>
-              {deptList.map((d) => (
-                <option key={d.id} value={d.id}>{d.name}</option>
-              ))}
-            </select>
-          </div>
           <Table
             columns={posColumns}
             data={posList}
@@ -457,17 +431,6 @@ export default function Departments() {
             error={posForm.formState.errors.title?.message}
             {...posForm.register("title", { required: "Title is required" })}
           />
-          <Select
-            label="Department"
-            required
-            error={posForm.formState.errors.department?.message}
-            {...posForm.register("department", { required: "Department is required" })}
-          >
-            <option value="">Select department</option>
-            {deptList.map((d) => (
-              <option key={d.id} value={d.id}>{d.name}</option>
-            ))}
-          </Select>
           <div className="grid grid-cols-2 gap-4">
             <Input
               label="Grade / Level"

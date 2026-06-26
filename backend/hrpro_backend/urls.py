@@ -5,7 +5,7 @@ from django.urls import path, include, re_path
 from django.conf import settings
 from django.conf.urls.static import static
 
-from .views import frontend_spa
+from .views import frontend_spa, health_check
 
 urlpatterns = [
     path("admin/", admin.site.urls),
@@ -24,6 +24,11 @@ urlpatterns = [
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
     urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+
+# Health check for Fly.io
+urlpatterns += [
+    path("api/health/", health_check),
+]
 
 # Serve the React SPA for client-side routing (any non-API, non-static path)
 urlpatterns += [

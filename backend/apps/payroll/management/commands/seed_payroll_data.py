@@ -71,7 +71,7 @@ class Command(BaseCommand):
                 updated += 1
                 self.stdout.write(
                     self.style.SUCCESS(
-                        f"  [OK] Set {pos.title} ({pos.department.name}) -> GHS {salary:,.2f}"
+                        f"  [OK] Set {pos.title} -> GHS {salary:,.2f}"
                     )
                 )
 

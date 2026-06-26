@@ -6,6 +6,7 @@ from .views import (
     DepartmentDetailView,
     PositionListCreateView,
     PositionDetailView,
+    PositionListView,
 )
 
 urlpatterns = [
@@ -13,4 +14,5 @@ urlpatterns = [
     path("<int:pk>/", DepartmentDetailView.as_view(), name="department-detail"),
     path("positions/", PositionListCreateView.as_view(), name="position-list"),
     path("positions/<int:pk>/", PositionDetailView.as_view(), name="position-detail"),
+    path("positions/list/", PositionListView.as_view(), name="position-list-simple"),
 ]

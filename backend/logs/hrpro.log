@@ -3188,3 +3188,190 @@ Watching for file changes with StatReloader
 Watching for file changes with StatReloader
 C:\Users\benic\Documents\NetBeansProjects\HTML\hrpro\backend\hrpro_backend\settings.py changed, reloading.
 Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+"GET /api/health/ HTTP/1.1" 200 784
+- Broken pipe from ('127.0.0.1', 58156)
+"GET /api/health/ HTTP/1.1" 200 784
+- Broken pipe from ('127.0.0.1', 56525)
+C:\Users\benic\Documents\NetBeansProjects\HTML\hrpro\backend\hrpro_backend\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\benic\Documents\NetBeansProjects\HTML\hrpro\backend\hrpro_backend\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\benic\Documents\NetBeansProjects\HTML\hrpro\backend\hrpro_backend\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\benic\Documents\NetBeansProjects\HTML\hrpro\backend\hrpro_backend\urls.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\benic\Documents\NetBeansProjects\HTML\hrpro\backend\hrpro_backend\urls.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+"GET /api/health/ HTTP/1.1" 200 16
+- Broken pipe from ('127.0.0.1', 63486)
+"POST /api/auth/login/ HTTP/1.1" 200 767
+"OPTIONS /api/employees/?page_size=1 HTTP/1.1" 200 0
+"OPTIONS /api/attendance/?date=2026-06-24&status=PRESENT&page_size=1 HTTP/1.1" 200 0
+"OPTIONS /api/leave/requests/?status=PENDING&page_size=1 HTTP/1.1" 200 0
+"OPTIONS /api/payroll/runs/?month=6&year=2026 HTTP/1.1" 200 0
+"OPTIONS /api/payroll/trends/ HTTP/1.1" 200 0
+"OPTIONS /api/leave/requests/?page_size=5 HTTP/1.1" 200 0
+"GET /api/leave/requests/?status=PENDING&page_size=1 HTTP/1.1" 200 52
+"GET /api/leave/requests/?page_size=5 HTTP/1.1" 200 52
+"GET /api/employees/?page_size=1 HTTP/1.1" 200 349
+"GET /api/payroll/runs/?month=6&year=2026 HTTP/1.1" 200 52
+"GET /api/payroll/trends/ HTTP/1.1" 200 134
+"GET /api/attendance/?date=2026-06-24&status=PRESENT&page_size=1 HTTP/1.1" 200 52
+"OPTIONS /api/employees/?page=1 HTTP/1.1" 200 0
+"OPTIONS /api/departments/?simple=true&page_size=100 HTTP/1.1" 200 0
+"GET /api/departments/?simple=true&page_size=100 HTTP/1.1" 200 183
+"GET /api/employees/?page=1 HTTP/1.1" 200 349
+"OPTIONS /api/departments/?page_size=100 HTTP/1.1" 200 0
+"OPTIONS /api/departments/positions/?page_size=200 HTTP/1.1" 200 0
+"GET /api/departments/positions/?page_size=200 HTTP/1.1" 200 701
+"GET /api/departments/?page_size=100 HTTP/1.1" 200 1441
+"OPTIONS /api/payroll/runs/ HTTP/1.1" 200 0
+"GET /api/payroll/runs/ HTTP/1.1" 200 810
+"OPTIONS /api/payroll/runs/2/ HTTP/1.1" 200 0
+"GET /api/payroll/runs/2/ HTTP/1.1" 200 371
+"OPTIONS /api/payroll/runs/2/process/ HTTP/1.1" 200 0
+"POST /api/payroll/runs/2/process/ HTTP/1.1" 200 88
+"GET /api/payroll/runs/2/ HTTP/1.1" 200 1128
+"OPTIONS /api/payroll/runs/2/reopen/ HTTP/1.1" 200 0
+"POST /api/payroll/runs/2/reopen/ HTTP/1.1" 200 80
+"GET /api/payroll/runs/2/ HTTP/1.1" 200 371
+"OPTIONS /api/leave/requests/ HTTP/1.1" 200 0
+"OPTIONS /api/leave/types/ HTTP/1.1" 200 0
+"OPTIONS /api/leave/balances/?year=2026 HTTP/1.1" 200 0
+"GET /api/leave/requests/ HTTP/1.1" 200 52
+"GET /api/leave/balances/?year=2026 HTTP/1.1" 200 52
+"GET /api/leave/types/ HTTP/1.1" 200 1813
+"OPTIONS /api/attendance/? HTTP/1.1" 200 0
+"OPTIONS /api/employees/?employment_status=ACTIVE&page_size=200 HTTP/1.1" 200 0
+"GET /api/attendance/? HTTP/1.1" 200 5972
+"GET /api/employees/?employment_status=ACTIVE&page_size=200 HTTP/1.1" 200 349
+"OPTIONS /api/loans/? HTTP/1.1" 200 0
+"GET /api/loans/? HTTP/1.1" 200 52
+"OPTIONS /api/reports/payroll-summary/?month=6&year=2026&include_allowances=false HTTP/1.1" 200 0
+Not Found: /api/reports/payroll-summary/
+"GET /api/reports/payroll-summary/?month=6&year=2026&include_allowances=false HTTP/1.1" 404 48
+"OPTIONS /api/reports/ssnit/?month=6&year=2026 HTTP/1.1" 200 0
+Not Found: /api/reports/ssnit/
+"GET /api/reports/ssnit/?month=6&year=2026 HTTP/1.1" 404 48
+"OPTIONS /api/reports/ssnit/?month=4&year=2026 HTTP/1.1" 200 0
+"GET /api/reports/ssnit/?month=4&year=2026 HTTP/1.1" 200 406
+"OPTIONS /api/reports/headcount/ HTTP/1.1" 200 0
+"GET /api/reports/headcount/ HTTP/1.1" 200 240
+"GET /api/reports/ssnit/?month=4&year=2026 HTTP/1.1" 200 406
+"GET /api/reports/headcount/ HTTP/1.1" 200 240
+"GET /api/reports/ssnit/?month=4&year=2026 HTTP/1.1" 200 406
+"OPTIONS /api/reports/payroll-summary/?month=4&year=2026&include_allowances=false HTTP/1.1" 200 0
+"GET /api/reports/payroll-summary/?month=4&year=2026&include_allowances=false HTTP/1.1" 200 1145
+"OPTIONS /api/auth/users/ HTTP/1.1" 200 0
+"GET /api/auth/users/ HTTP/1.1" 200 328
+"OPTIONS /api/auth/pending-approvals/ HTTP/1.1" 200 0
+"GET /api/auth/pending-approvals/ HTTP/1.1" 200 52
+"OPTIONS /api/auth/password-reset-requests/list/?status=PENDING HTTP/1.1" 200 0
+"GET /api/auth/password-reset-requests/list/?status=PENDING HTTP/1.1" 200 52
+"OPTIONS /api/leave/types/?page_size=50 HTTP/1.1" 200 0
+"GET /api/leave/types/?page_size=50 HTTP/1.1" 200 1813
+"OPTIONS /api/salary/allowance-types/?page_size=50 HTTP/1.1" 200 0
+"GET /api/salary/allowance-types/?page_size=50 HTTP/1.1" 200 1218
+"OPTIONS /api/salary/allowances/?page_size=200 HTTP/1.1" 200 0
+"OPTIONS /api/employees/?page_size=200 HTTP/1.1" 200 0
+"GET /api/salary/allowances/?page_size=200 HTTP/1.1" 200 52
+"GET /api/employees/?page_size=200 HTTP/1.1" 200 349
+"OPTIONS /api/salary/business-profile/ HTTP/1.1" 200 0
+"OPTIONS /api/salary/payroll-settings/ HTTP/1.1" 200 0
+"OPTIONS /api/salary/paye-bands/ HTTP/1.1" 200 0
+"GET /api/salary/payroll-settings/ HTTP/1.1" 200 406
+"GET /api/salary/business-profile/ HTTP/1.1" 200 169
+"GET /api/salary/paye-bands/ HTTP/1.1" 200 774
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+"OPTIONS /api/employees/?page_size=1 HTTP/1.1" 200 0
+"OPTIONS /api/attendance/?date=2026-06-26&status=PRESENT&page_size=1 HTTP/1.1" 200 0
+"OPTIONS /api/leave/requests/?status=PENDING&page_size=1 HTTP/1.1" 200 0
+"OPTIONS /api/payroll/runs/?month=6&year=2026 HTTP/1.1" 200 0
+"OPTIONS /api/payroll/trends/ HTTP/1.1" 200 0
+"OPTIONS /api/leave/requests/?page_size=5 HTTP/1.1" 200 0
+"GET /api/payroll/runs/?month=6&year=2026 HTTP/1.1" 200 52
+"GET /api/leave/requests/?page_size=5 HTTP/1.1" 200 52
+"GET /api/leave/requests/?status=PENDING&page_size=1 HTTP/1.1" 200 52
+"GET /api/payroll/trends/ HTTP/1.1" 200 134
+"GET /api/attendance/?date=2026-06-26&status=PRESENT&page_size=1 HTTP/1.1" 200 52
+"GET /api/employees/?page_size=1 HTTP/1.1" 200 349
+"OPTIONS /api/reports/payroll-summary/?month=6&year=2026&include_allowances=false HTTP/1.1" 200 0
+Not Found: /api/reports/payroll-summary/
+"GET /api/reports/payroll-summary/?month=6&year=2026&include_allowances=false HTTP/1.1" 404 48
+Not Found: /api/reports/payroll-summary/
+"GET /api/reports/payroll-summary/?month=6&year=2026&include_allowances=false HTTP/1.1" 404 48
+"GET /api/employees/?page_size=1 HTTP/1.1" 200 349
+"GET /api/attendance/?date=2026-06-26&status=PRESENT&page_size=1 HTTP/1.1" 200 52
+"GET /api/leave/requests/?status=PENDING&page_size=1 HTTP/1.1" 200 52
+"GET /api/payroll/runs/?month=6&year=2026 HTTP/1.1" 200 52
+"GET /api/payroll/trends/ HTTP/1.1" 200 134
+"GET /api/leave/requests/?page_size=5 HTTP/1.1" 200 52
+"OPTIONS /api/employees/?page=1 HTTP/1.1" 200 0
+"OPTIONS /api/departments/?simple=true&page_size=100 HTTP/1.1" 200 0
+"GET /api/employees/?page=1 HTTP/1.1" 200 349
+"GET /api/departments/?simple=true&page_size=100 HTTP/1.1" 200 183
+"OPTIONS /api/leave/requests/ HTTP/1.1" 200 0
+"OPTIONS /api/leave/types/ HTTP/1.1" 200 0
+"OPTIONS /api/leave/balances/?year=2026 HTTP/1.1" 200 0
+"GET /api/leave/requests/ HTTP/1.1" 200 52
+"GET /api/leave/balances/?year=2026 HTTP/1.1" 200 52
+"GET /api/leave/types/ HTTP/1.1" 200 1813
+"GET /api/employees/?page_size=1 HTTP/1.1" 200 349
+"GET /api/attendance/?date=2026-06-26&status=PRESENT&page_size=1 HTTP/1.1" 200 52
+"GET /api/leave/requests/?status=PENDING&page_size=1 HTTP/1.1" 200 52
+"GET /api/payroll/trends/ HTTP/1.1" 200 134
+"GET /api/leave/requests/?page_size=5 HTTP/1.1" 200 52
+"GET /api/payroll/runs/?month=6&year=2026 HTTP/1.1" 200 52
+C:\Users\benic\Documents\NetBeansProjects\HTML\hrpro\backend\apps\departments\models.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\benic\Documents\NetBeansProjects\HTML\hrpro\backend\apps\departments\models.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\benic\Documents\NetBeansProjects\HTML\hrpro\backend\apps\departments\serializers.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\benic\Documents\NetBeansProjects\HTML\hrpro\backend\apps\departments\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\benic\Documents\NetBeansProjects\HTML\hrpro\backend\apps\departments\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\benic\Documents\NetBeansProjects\HTML\hrpro\backend\apps\departments\urls.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\benic\Documents\NetBeansProjects\HTML\hrpro\backend\apps\departments\urls.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\benic\Documents\NetBeansProjects\HTML\hrpro\backend\apps\employees\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\benic\Documents\NetBeansProjects\HTML\hrpro\backend\apps\employees\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\benic\Documents\NetBeansProjects\HTML\hrpro\backend\apps\departments\serializers.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\benic\Documents\NetBeansProjects\HTML\hrpro\backend\apps\departments\admin.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+"GET /api/health/ HTTP/1.1" 200 16
+- Broken pipe from ('127.0.0.1', 59091)
+Unauthorized: /api/departments/positions/
+"GET /api/departments/positions/?page_size=10 HTTP/1.1" 401 58
+Unauthorized: /api/departments/positions/list/
+"GET /api/departments/positions/list/ HTTP/1.1" 401 58
+- Broken pipe from ('127.0.0.1', 59902)
+Bad Request: /api/auth/login/
+"POST /api/auth/login/ HTTP/1.1" 400 69
+- Broken pipe from ('127.0.0.1', 62221)
+"POST /api/auth/login/ HTTP/1.1" 200 767
+"GET /api/departments/positions/?page_size=10 HTTP/1.1" 200 695
+- Broken pipe from ('127.0.0.1', 53022)
+"POST /api/auth/login/ HTTP/1.1" 200 767
+"GET /api/departments/positions/list/ HTTP/1.1" 200 110
+- Broken pipe from ('127.0.0.1', 62080)
+"POST /api/auth/login/ HTTP/1.1" 200 767
+"POST /api/departments/positions/ HTTP/1.1" 201 198
+- Broken pipe from ('127.0.0.1', 62086)
+"POST /api/auth/login/ HTTP/1.1" 200 767
+Bad Request: /api/departments/positions/
+"POST /api/departments/positions/ HTTP/1.1" 400 54
+- Broken pipe from ('127.0.0.1', 52973)
+"POST /api/auth/login/ HTTP/1.1" 200 767
+"GET /api/departments/?page_size=10 HTTP/1.1" 200 749
+- Broken pipe from ('127.0.0.1', 55941)

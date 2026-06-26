@@ -5,17 +5,15 @@ from .models import Department, Position
 
 
 class PositionSerializer(serializers.ModelSerializer):
-    department_name = serializers.CharField(source="department.name", read_only=True)
-
     class Meta:
         model = Position
         fields = [
             "id",
             "title",
-            "department",
-            "department_name",
             "grade",
             "basic_salary",
+            "regular_ot_rate",
+            "holiday_ot_rate",
             "description",
             "is_active",
             "created_at",
@@ -23,8 +21,15 @@ class PositionSerializer(serializers.ModelSerializer):
         read_only_fields = ["id", "created_at"]
 
 
+class PositionListSerializer(serializers.ModelSerializer):
+    """Lightweight serializer for dropdowns."""
+
+    class Meta:
+        model = Position
+        fields = ["id", "title"]
+
+
 class DepartmentSerializer(serializers.ModelSerializer):
-    positions = PositionSerializer(many=True, read_only=True)
     head_name = serializers.SerializerMethodField()
     employee_count = serializers.SerializerMethodField()
 
@@ -38,7 +43,6 @@ class DepartmentSerializer(serializers.ModelSerializer):
             "head",
             "head_name",
             "employee_count",
-            "positions",
             "is_active",
             "created_at",
             "updated_at",

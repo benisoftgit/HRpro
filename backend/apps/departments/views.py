@@ -5,7 +5,12 @@ from rest_framework.permissions import IsAuthenticated
 from django_filters.rest_framework import DjangoFilterBackend
 
 from .models import Department, Position
-from .serializers import DepartmentSerializer, DepartmentListSerializer, PositionSerializer
+from .serializers import (
+    DepartmentSerializer,
+    DepartmentListSerializer,
+    PositionSerializer,
+    PositionListSerializer,
+)
 from apps.accounts.permissions import IsAdminOrHR
 
 
@@ -39,11 +44,16 @@ class DepartmentDetailView(generics.RetrieveUpdateDestroyAPIView):
 class PositionListCreateView(generics.ListCreateAPIView):
     serializer_class = PositionSerializer
     filter_backends = [DjangoFilterBackend, filters.SearchFilter]
-    filterset_fields = ["department", "is_active"]
+    filterset_fields = ["is_active"]
     search_fields = ["title", "grade"]
 
+    def get_serializer_class(self):
+        if self.request.query_params.get("simple"):
+            return PositionListSerializer
+        return PositionSerializer
+
     def get_queryset(self):
-        return Position.objects.select_related("department").all()
+        return Position.objects.all()
 
     def get_permissions(self):
         if self.request.method == "GET":
@@ -59,3 +69,14 @@ class PositionDetailView(generics.RetrieveUpdateDestroyAPIView):
         if self.request.method == "GET":
             return [IsAuthenticated()]
         return [IsAdminOrHR()]
+
+
+class PositionListView(generics.ListAPIView):
+    """Read-only list for dropdowns (no pagination, simple fields)."""
+
+    queryset = Position.objects.filter(is_active=True)
+    serializer_class = PositionListSerializer
+    pagination_class = None
+
+    def get_permissions(self):
+        return [IsAuthenticated()]

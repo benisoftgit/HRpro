@@ -28,14 +28,9 @@ class Department(models.Model):
 
 
 class Position(models.Model):
-    """Job position within a department."""
+    """Job position (company-wide, not tied to a department)."""
 
-    title = models.CharField(max_length=100)
-    department = models.ForeignKey(
-        Department,
-        on_delete=models.CASCADE,
-        related_name="positions",
-    )
+    title = models.CharField(max_length=100, unique=True)
     grade = models.CharField(max_length=20, blank=True, help_text="e.g. Grade 5, Level 3")
     basic_salary = models.DecimalField(
         max_digits=12,
@@ -60,8 +55,7 @@ class Position(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
 
     class Meta:
-        ordering = ["department", "title"]
-        unique_together = ["title", "department"]
+        ordering = ["title"]
 
     def __str__(self):
-        return f"{self.title} — {self.department.name}"
+        return self.title

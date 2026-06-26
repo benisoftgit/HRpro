@@ -245,9 +245,7 @@ class EmployeeImportView(APIView):
 
         # Build lookup caches
         dept_cache = {d.name.lower(): d for d in Department.objects.filter(is_active=True)}
-        pos_cache = {}  # (dept_id, title_lower) → Position
-        for pos in Position.objects.select_related("department").filter(is_active=True):
-            pos_cache[(pos.department_id, pos.title.lower())] = pos
+        pos_cache = {p.title.lower(): p for p in Position.objects.filter(is_active=True)}
 
         existing_national_ids = set(
             Employee.objects.values_list("national_id", flat=True)
@@ -301,13 +299,12 @@ class EmployeeImportView(APIView):
 
             # --- Position lookup ---
             pos_title = get("position").lower()
-            position = pos_cache.get((department.id, pos_title))
+            position = pos_cache.get(pos_title)
             if not position:
                 errors.append({
                     "row": row_num,
                     "name": f"{get('first_name')} {get('last_name')}".strip(),
-                    "reason": f"Position '{get('position')}' not found in department "
-                              f"'{department.name}'.",
+                    "reason": f"Position '{get('position')}' not found.",
                 })
                 continue
 
